@@ -24,19 +24,20 @@ extension Diffing where Value == UIImage {
       fromData: { UIImage(data: $0, scale: imageScale)! }
     ) { old, new in
       guard !compare(old, new, precision: precision) else { return nil }
-      let difference = SnapshotTesting.diff(old, new)
+      // let difference = SnapshotTesting.diff(old, new)
       let message = new.size == old.size
         ? "Newly-taken snapshot does not match reference."
         : "Newly-taken snapshot@\(new.size) does not match reference@\(old.size)."
-      let oldAttachment = XCTAttachment(image: old)
+      /*let oldAttachment = XCTAttachment(image: old)
       oldAttachment.name = "reference"
       let newAttachment = XCTAttachment(image: new)
       newAttachment.name = "failure"
       let differenceAttachment = XCTAttachment(image: difference)
-      differenceAttachment.name = "difference"
+      differenceAttachment.name = "difference"*/
       return (
         message,
-        [oldAttachment, newAttachment, differenceAttachment]
+        []
+        // [oldAttachment, newAttachment, differenceAttachment]
       )
     }
   }
